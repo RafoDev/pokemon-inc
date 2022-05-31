@@ -9,11 +9,12 @@ export const PokemonsProvider = ({ children }) => {
   const navigate = useNavigate();
   const [pokemon, setPokemon] = useState({});
   const [pokemons, setPokemons] = useState([]);
-
+  const [loading, setLoading] = useState(false)
 
 
   const createPokemon = async (pokemon) => {
     try {
+      setLoading(true);
       const form = new FormData();
       for (const key in pokemon) {
         form.append(key, pokemon[key]);
@@ -32,11 +33,14 @@ export const PokemonsProvider = ({ children }) => {
       navigate('/pokemons');
     } catch (error) {
       console.log(error.message.data.message);
+    } finally{
+      setLoading(false);
     }
   }
 
   const readPokemons = async () => {
     try {
+      setLoading(true)
       const options = {
         method: "GET",
         url: `${process.env.REACT_APP_POKEMON_INC_MERN_API}/pokemons`
@@ -45,10 +49,13 @@ export const PokemonsProvider = ({ children }) => {
       setPokemons(data);
     } catch (error) {
       console.log(error.message.data.message);
+    } finally{
+      setLoading(false);
     }
   }
   const readPokemon = async (_id) => {
     try {
+      setLoading(true)
       const options = {
         method: "GET",
         url: `${process.env.REACT_APP_POKEMON_INC_MERN_API}/pokemons/${_id}`
@@ -58,10 +65,13 @@ export const PokemonsProvider = ({ children }) => {
       setPokemon(data);
     } catch (error) {
       console.log(error.message.data.message);
+    } finally{
+      setLoading(false);
     }
   }
   const removePokemon = async (_id) => {
     try {
+      setLoading(true)
       const options = {
         method: "DELETE",
         url: `${process.env.REACT_APP_POKEMON_INC_MERN_API}/pokemons/${_id}`
@@ -71,11 +81,14 @@ export const PokemonsProvider = ({ children }) => {
       console.log(`Eliminando...`)
     } catch (error) {
       console.log(error.message.data.message);
+    } finally{
+      setLoading(false);
     }
   }
 
   const updatePokemon = async pokemon => {
     try {
+      setLoading(true);
       const form = new FormData();
       for (const key in pokemon) {
         form.append(key, pokemon[key]);
@@ -96,6 +109,8 @@ export const PokemonsProvider = ({ children }) => {
       navigate('/pokemons');
     } catch (error) {
       console.log(error.message.data.message);
+    } finally{
+      setLoading(false);
     }
   };
 
@@ -117,7 +132,7 @@ export const PokemonsProvider = ({ children }) => {
 
   return (
     <PokemonsContext.Provider
-      value={{ removePokemon, pokemons, readPokemons, readPokemon, pokemon, submitPokemonsForm }}>
+      value={{ removePokemon, pokemons, readPokemons, readPokemon, pokemon, submitPokemonsForm, loading }}>
       {children}
     </PokemonsContext.Provider>
   );

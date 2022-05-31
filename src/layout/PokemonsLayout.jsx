@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import Footer from '../components/sections/Footer'
 import Header from '../components/sections/Header'
 import Loader from '../components/sections/Loader'
+import usePokemons from '../hooks/usePokemons'
 
 const PokemonsLayout = () => {
     const applicationName = "PokémonInc"
@@ -10,10 +11,11 @@ const PokemonsLayout = () => {
         year : new Date().getFullYear(),
         author: 'Rafo 👽'
     }
+    const {loading} = usePokemons();
     return (
         <>
             {
-                true && <Loader/>
+                loading && <Loader/>
             }
             <Header
                 applicationName={applicationName}
