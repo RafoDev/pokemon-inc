@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#000000" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <meta name="description" content="Pokemon admin" />
-  <title>React App</title>
+  <title>Pokemon Inc</title>
 
   <style>
     @keyframes jump {
@@ -16,16 +16,17 @@
         transform: translateY(20%);
       }
     }
-    @keyframes shadow{
-      100%{
+
+    @keyframes shadow {
+      100% {
         width: 15%;
       }
     }
-    
+
     .pokeLoader {
       display: flex;
       flex-direction: column;
-      gap:1rem;
+      gap: 1rem;
       position: absolute;
       z-index: 200;
       background-color: rgba(39, 39, 42, 0.835);
@@ -36,25 +37,29 @@
       align-items: center;
       backdrop-filter: blur(5px);
     }
-    .pokeLoader--hidden{
+
+    .pokeLoader--hidden {
       display: none;
     }
-    .pokeLoader-container{
+
+    .pokeLoader-container {
       animation: jump 0.5s cubic-bezier(0.77, 0.95, 1, 0.99) infinite alternate;
       width: 20%;
-      max-width: 400px;
+      max-width: 200px;
     }
-    .pokeLoader-img{
-      width: 100%; 
+
+    .pokeLoader-img {
+      width: 100%;
     }
-    .pokeLoader__shadow{
+
+    .pokeLoader__shadow {
       width: 20%;
       height: 10px;
       background-color: rgb(0, 0, 0);
       border-radius: 100%;
       animation: shadow 0.5s cubic-bezier(0.77, 0.95, 1, 0.99) infinite alternate;
-      max-width: 400px;
-      
+      max-width: 200px;
+
     }
   </style>
 
@@ -62,7 +67,7 @@
 
 <body class="bg-zinc-800 text-white">
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  
+
   <div id="root" class="flex flex-col min-h-screen">
   </div>
   <!-- <script>
